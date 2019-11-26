@@ -43,7 +43,7 @@ app.put("/api/hotdogs/:kindof", function(req, res) {
 
 // Delete a plan
 app.delete("/api/plans/:id", function(req, res) {
-  connection.query("DELETE FROM plans WHERE id = ?", [req.params.id], function(err, result) {
+  connection.query("DELETE FROM hotdogs WHERE eaten = true", [req.params.eaten], function(err, result) {
     if (err) {
       // If an error occurred, send a generic server failure
       return res.status(500).end();
