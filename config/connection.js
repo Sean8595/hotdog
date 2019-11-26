@@ -1,16 +1,22 @@
-var Sequelize = require("sequelize");
 
-// Creates mySQL connection using Sequelize, the empty string in the third argument spot is our password.
-var sequelize = new Sequelize("u7jvolrozed9704e", "qzawwj5tooapigbp", "bn1f4ncqx53godbx", {
-  host: "localjw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com	host",
+var mysql = require("mysql");
+
+var connection = mysql.createConnection({
+  host: "localjw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
   port: 3306,
-  dialect: "mysql",
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  }
+  user: "u7jvolrozed9704e",
+  password: "qzawwj5tooapigbp",
+  database: "bn1f4ncqx53godbx"
 });
 
-// Exports the connection for other files to use
-module.exports = sequelize;
+// Make connection.
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
+  console.log("connected as id " + connection.threadId);
+});
+
+// Export connection for our ORM to use.
+module.exports = connection;
