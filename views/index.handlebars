@@ -1,31 +1,38 @@
-<h1>All Dogs Go to Kevin!</h1>
+<h1>Cats!</h1>
 
-<h2>Eat the hotdog?</h2>
+<h2>Cats that are not sleepy!</h2>
 
 <ul>
-    {{!-- So these are the blocks that hold the data of if the object is true or false --}}
-  {{#each hotdog}}
+  {{#each hotdogs}}
     {{#unless eaten}}
       {{> hotdogs/hotdog-block eaten=true}}
     {{/unless}}
   {{/each}}
 </ul>
-<h2>Hotdogs you have eaten</h2>
+
+<h2>Hotdogs that are eaten!</h2>
+
 <ul>
-  {{#each hotdog}}
+  {{#each hotdogs}}
     {{#if eaten}}
       {{> hotdogs/hotdog-block eaten=false}}
     {{/if}}
   {{/each}}
 </ul>
 
-{{!-- This part i get --}}
 <h2>Add a Hotdog</h2>
 <form class="create-form">
 
   <div class="form-group">
-    <label for="ca">Hot Dog:</label>
-    <input type="text" id="hotdog" name="name">
+    <label for="ca">Hot Doggity Dogs:</label>
+    <input type="text" id="ca" name="name">
   </div>
-  <button type="submit">Add hotdog</button>
+
+  <div class="form-group">
+    <label for="eaten">I ARE DA HOTDOG</label><br>
+    <input type="radio" name="eaten" value="1" checked> ATE!<br>
+    <input type="radio" name="eaten" value="0"> Not eaten
+  </div>
+
+  <button type="submit">HOTDOG</button>
 </form>

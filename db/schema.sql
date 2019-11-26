@@ -6,16 +6,16 @@ USE hotdog_db;
 
 CREATE TABLE hotdog (
   id INT NOT NULL AUTO_INCREMENT,
-  kindof VARCHAR(45) NULL,
-  eaten BOOLEAN (),
+  kindof VARCHAR(45) NOT NULL,
+  eaten BOOLEAN NOT NULL DEFAULT 0,
   PRIMARY KEY (id)
 );
 
 INSERT INTO hotdog (kindof)
-VALUES ("vanilla");
+VALUES ("Chilli");
 
-INSERT INTO products (kindof)
-VALUES ("chocolate");
+INSERT INTO hotdog (kindof)
+VALUES ("Cheese");
 
-INSERT INTO products (kindof)
-VALUES ("strawberry");
+INSERT INTO hotdog (kindof)
+VALUES ("Wawa");

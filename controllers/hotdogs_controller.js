@@ -2,44 +2,60 @@ var express = require("express");
 
 var router = express.Router();
 
+// Import the model (cat.js) to use its database functions.
+var hotdog = require("../models/hotdog.js");
 
-var cat = require("../models/hotdog.js");
-//in the index the page just displays the hotdogs on the page 
+// Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-    hotdog.all(function(data) {
-      var hbsObject = {
-        hotdog: data
-      };
-      console.log(hbsObject);
-      res.render("index", hbsObject);
-    });
+  hotdog.all(function(data) {
+    var hbsObject = {
+      hotdogs: data
+    };
+    console.log(hbsObject);
+    res.render("index", hbsObject);
   });
-  //this posts the hotdog that has been eaten 
-  router.post("/api/hotdog", function(req, res) {
-    hotdog.create([
-      "name", "eaten"
-    ], [
-      req.body.name, req.body.eaten
-    ], function(result) {
-      // Send back the ID of the new quote
-      res.json({ id: result.insertId });
-    });
+});
+
+router.post("/api/hotdogs", function(req, res) {
+  hotdog.create([
+    "name", "sleepy"
+  ], [
+    req.body.kindof, req.body.eaten
+  ], function(result) {
+    // Send back the ID of the new quote
+    res.json({ id: result.insertId });
   });
-//this is what holds whether or not the hotdog has been 
-  router.put("/api/hotdog/:id", function(req, res) {
-    var condition = "id = " + req.params.id;
-  
-    console.log("status", status);
-  //updates the uneaten to the eaten 
-    hotdog.update({
-      eaten: req.body.eaten 
-    }, condition, function(result) {
-      if (result.changedRows == 0) {
-        // If no rows were changed, then the ID must not exist, so 404
-        return res.status(404).end();
-      } else {
-        res.status(200).end();
-      }
-    });
+});
+
+router.put("/api/hotdogs/:id", function(req, res) {
+  var condition = "id = " + req.params.id;
+
+  console.log("condition", condition);
+
+  hotdog.update({
+    eaten: req.body.eaten
+  }, condition, function(result) {
+    if (result.changedRows == 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
   });
-  module.exports = router;
+});
+
+router.delete("/api/hotdogs/:id", function(req, res) {
+  var condition = "id = " + req.params.id;
+
+  hotdog.delete(condition, function(result) {
+    if (result.affectedRows == 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
+  });
+});
+
+// Export routes for server.js to use.
+module.exports = router;
