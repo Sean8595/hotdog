@@ -18,9 +18,9 @@ router.get("/", function(req, res) {
 
 router.post("/api/hotdogs", function(req, res) {
   hotdog.create([
-    "name", "sleepy"
+    "kindof"
   ], [
-    req.body.kindof, req.body.eaten
+    req.body.kindof
   ], function(result) {
     // Send back the ID of the new quote
     res.json({ id: result.insertId });

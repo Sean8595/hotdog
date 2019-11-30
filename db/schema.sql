@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS hotdog_db;
+DROP DATABASE IF EXISTS u7jvolrozed9704e;
 
-CREATE DATABASE hotdog_db;
+CREATE DATABASE u7jvolrozed9704e;
 
-USE hotdog_db;
+USE u7jvolrozed9704e;
 
 CREATE TABLE hotdog (
   id INT NOT NULL AUTO_INCREMENT,

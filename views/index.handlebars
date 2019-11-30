@@ -1,38 +1,48 @@
-<h1>Cats!</h1>
-
-<h2>Cats that are not sleepy!</h2>
-
-<ul>
-  {{#each hotdogs}}
-    {{#unless eaten}}
-      {{> hotdogs/hotdog-block eaten=true}}
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>Hotdogs that are eaten!</h2>
-
-<ul>
-  {{#each hotdogs}}
-    {{#if eaten}}
-      {{> hotdogs/hotdog-block eaten=false}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Hotdog</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="ca">Hot Doggity Dogs:</label>
-    <input type="text" id="ca" name="name">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">All Dogs go to Kevin!</h1>
   </div>
-
-  <div class="form-group">
-    <label for="eaten">I ARE DA HOTDOG</label><br>
-    <input type="radio" name="eaten" value="1" checked> ATE!<br>
-    <input type="radio" name="eaten" value="0"> Not eaten
+</div>
+<div class="card text-center">
+  <div class="card-body">
+    <h2>Add a Hotdog</h2>
+    <form class="create-form">
+      <div class="form-group">
+        <label for="dog">Hot Doggity Dogs:</label>
+        <input type="text" id="dog" name="name">
+      </div>
+      <button type="submit">HOTDOG</button>
+    </form>
   </div>
+</div>
 
-  <button type="submit">HOTDOG</button>
-</form>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h2>Not Eaten</h2>
+        <ul>
+          {{#each hotdogs}}
+          {{#unless this.eaten}}
+          {{> hotdogs/hotdog-block eaten=true}}
+          {{/unless}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h2>Nom Nom</h2>
+        <ul>
+          {{#each hotdogs}}
+          {{#if eaten}}
+          {{> hotdogs/hotdog-block eaten=false}}
+          {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
